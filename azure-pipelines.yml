@@ -29,17 +29,13 @@ steps:
     targetPath: '$(Pipeline.Workspace)'
     publishLocation: 'pipeline'
 
-- task: ArtifactoryGenericUpload@2
+- task: ArtifactoryBuildPromotion@1
   inputs:
     artifactoryService: 'JFrog Platform'
-    specSource: taskConfiguration
-    fileSpec: |
-     {
-       "files": [
-        {
-          "pattern": "*war",
-          "target": "javauploaddownload/upload",
-        }
-      ]
-     }
-
+    buildName: '$(Build.DefinitionName)'
+    buildNumber: '$(Build.BuildNumber)'
+    targetRepo: 'javauploaddownload'
+    status: 'Released'
+    includeDependencies: true
+    copy: true
+    dryRun: true
