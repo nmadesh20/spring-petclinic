@@ -11,8 +11,18 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- task: WhiteSource@21
+  inputs:
+    cwd: '$(System.DefaultWorkingDirectory)'
+    projectName: 'DevOpsTestProject'
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'SonarCloud'
+    organization: 'app-sonar2706'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'DevOpsTestProject'
+    cliSources: '.'
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
@@ -28,7 +38,10 @@ steps:
   inputs:
     targetPath: '$(Pipeline.Workspace)'
     publishLocation: 'pipeline'
-
+- task: SonarCloudAnalyze@1
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
 
 - task: JFrogGenericArtifacts@1
   inputs:
