@@ -53,7 +53,7 @@ steps:
         "files": [
           {
             "pattern": "$(Build.SourcesDirectory)/target/*jar",
-            "target": "javauploaddownload/javauploaddownload/artiupload/"
+            "target": "javauploaddownload/javauploaddownload/${Build.BuildId}/"
           }
         ]
       }
