@@ -15,14 +15,19 @@ steps:
   inputs:
     cwd: '$(System.DefaultWorkingDirectory)'
     projectName: 'DevOpsTestProject'
-- task: SonarCloudPrepare@1
+- task: FortifyOnDemandStatic@8
   inputs:
-    SonarCloud: 'SonarCloud'
-    organization: 'app-sonar2706'
-    scannerMode: 'CLI'
-    configMode: 'manual'
-    cliProjectKey: 'DevOpsTestProject'
-    cliSources: '.'
+    FortifyProjects: '.'
+    FodConnection: 'Fortify'
+    ReleaseOptions: '0'
+    ReleaseId: 173705
+    EntitlementSelection: '1'
+    EntitlementPreference: '2'
+    OverrideScanSettings: '2'
+    InProgressScanActionType: '0'
+    RemediationScanPreference: '0'
+    BuildType: 'mvn'
+    PolicyFailAction: '0'
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
@@ -32,7 +37,7 @@ steps:
     mavenVersionOption: 'Default'
     mavenAuthenticateFeed: false
     effectivePomSkip: false
-    sonarQubeRunAnalysis: false
+    sonarQubeRunAnalysis: true
 
 - task: PublishPipelineArtifact@1
   inputs:
