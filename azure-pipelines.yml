@@ -29,22 +29,19 @@ steps:
     targetPath: '$(Pipeline.Workspace)'
     publishLocation: 'pipeline'
 
-- task: Bash@3
+
+- task: JFrogGenericArtifacts@1
   inputs:
-    targetType: 'inline'
-    script: |
-      cd $(Build.SourcesDirectory)
-      ls -lrt
-- task: ArtifactoryGenericUpload@2
-  inputs:
-    artifactoryService: 'JFrog Platform'
-    specSource: taskConfiguration
+    command: 'Upload'
+    connection: 'JFrog Artifactory2'
+    specSource: 'taskConfiguration'
     fileSpec: |
-     {
-       "files": [
-        {
-          "pattern": "$(Build.SourcesDirectory)/target/*jar",
-          "target": "javauploaddownload/javauploaddownload/upload"
-        }
-      ]
-     }
+      {
+        "files": [
+          {
+            "pattern": "$(Build.SourcesDirectory)/target/*jar",
+            "target": "javauploaddownload/javauploaddownload/upload"
+          }
+        ]
+      }
+    failNoOp: true
