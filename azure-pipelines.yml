@@ -40,7 +40,7 @@ steps:
         "files": [
           {
             "pattern": "$(Build.SourcesDirectory)/target/*jar",
-            "target": "javauploaddownload/javauploaddownload/upload"
+            "target": "javauploaddownload/javauploaddownload/upload/"
           }
         ]
       }
