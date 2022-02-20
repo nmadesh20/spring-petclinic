@@ -43,7 +43,7 @@ steps:
      {
        "files": [
         {
-          "pattern": "$(Build.ArtifactStagingDirectory)/*war",
+          "pattern": "$(Build.ArtifactStagingDirectory)/*jar",
           "target": "javauploaddownload/javauploaddownload/upload"
         }
       ]
