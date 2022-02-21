@@ -24,7 +24,7 @@ steps:
     mavenVersionOption: 'Default'
     mavenAuthenticateFeed: false
     effectivePomSkip: false
-    sonarQubeRunAnalysis: true
+    sonarQubeRunAnalysis: false
 
 - task: PublishPipelineArtifact@1
   inputs:
