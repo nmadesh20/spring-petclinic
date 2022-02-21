@@ -34,11 +34,11 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      cd $(Build.ArtifactStagingDirectory)
+      cd $(Build.SourcesDirectory)
       ls -lrt
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: '$(build.artifactstagingdirectory)'
+    rootFolderOrFile: '$(Build.SourcesDirectory)/target'
     includeRootFolder: true
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
