@@ -11,7 +11,10 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-
+- task: WhiteSource@21
+  inputs:
+    cwd: '$(System.DefaultWorkingDirectory)'
+    projectName: 'DevOpsTestProject'
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
