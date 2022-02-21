@@ -11,23 +11,7 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: WhiteSource@21
-  inputs:
-    cwd: '$(System.DefaultWorkingDirectory)'
-    projectName: 'DevOpsTestProject'
-- task: FortifyOnDemandStatic@8
-  inputs:
-    FortifyProjects: '.'
-    FodConnection: 'Fortify'
-    ReleaseOptions: '0'
-    ReleaseId: 173705
-    EntitlementSelection: '1'
-    EntitlementPreference: '2'
-    OverrideScanSettings: '2'
-    InProgressScanActionType: '0'
-    RemediationScanPreference: '0'
-    BuildType: 'mvn'
-    PolicyFailAction: '0'
+
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
