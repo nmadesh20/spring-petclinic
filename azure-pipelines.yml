@@ -49,34 +49,6 @@ steps:
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     replaceExistingArchive: true
-- task: AzureRmWebAppDeployment@4
-  inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'Pay As You Go (069964e3-0984-4087-b45f-560653532e2d)'
-    appType: 'webAppLinux'
-    WebAppName: 'myjavawebapp02212022'
-    packageForLinux: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+
     
-- task: AzureFunctionApp@1
-  displayName: Azure Function App deploy
-  inputs:
-    azureSubscription: 'Pay As You Go (069964e3-0984-4087-b45f-560653532e2d)'
-    appType: 'functionApp'
-    appName: 'myjavaApp02212022'
-    package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    deploymentMethod: zipDeploy
-- task: JFrogGenericArtifacts@1
-  inputs:
-    command: 'Upload'
-    connection: 'JFrog Artifactory2'
-    specSource: 'taskConfiguration'
-    fileSpec: |
-      {
-        "files": [
-          {
-            "pattern": "$(Build.SourcesDirectory)/target/*jar",
-            "target": "javauploaddownload/javauploaddownload/${Build.BuildId}/"
-          }
-        ]
-      }
-    failNoOp: true
+
